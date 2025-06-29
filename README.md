@@ -78,7 +78,7 @@ pnpm dev
 ## 🧪 Postman Collection
 
 Import the following file into Postman for quick testing:
-[Download Collection](./student-management.postman_collection.json)
+(Working on it)
 
 ---
 
@@ -107,6 +107,6 @@ src/
 
 ## 🧑 Author
 
-Made with ❤️ by [Your Name]
+Made with ❤️ by Pymann 🕸
 
 ---
