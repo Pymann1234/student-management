@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Student {
+  id         Int         @id @default(autoincrement())
+  name       String
+  email      String      @unique
+  enrollments Enrollment[]
+  createdAt  DateTime    @default(now())
+}
+
+model Teacher {
+  id         Int       @id @default(autoincrement())
+  name       String
+  email      String    @unique
+  classes    Class[]
+  createdAt  DateTime  @default(now())
+}
+
+model Class {
+  id         Int         @id @default(autoincrement())
+  name       String
+  teacher    Teacher     @relation(fields: [teacherId], references: [id])
+  teacherId  Int
+  enrollments Enrollment[]
+  createdAt  DateTime    @default(now())
+}
+
+model Enrollment {
+  id        Int      @id @default(autoincrement())
+  student   Student  @relation(fields: [studentId], references: [id])
+  studentId Int
+  class     Class    @relation(fields: [classId], references: [id])
+  classId   Int
+  createdAt DateTime @default(now())
+
+  @@unique([studentId, classId]) // Prevent duplicate enrollment
+}
